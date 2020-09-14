@@ -1,0 +1,23 @@
+from collections import Counter
+def firstNonRepeatingCharacter(string):
+  count = Counter(string.lower())
+  for i in range(len(string)):
+    if count[string[i].lower()] == 1:
+      return string[i]
+
+string = input('Please enter your String: ')
+print(firstNonRepeatingCharacter(string))
+
+
+dictionary = {}
+for letter in string:
+  if string.lower().count(letter.lower()) in dictionary:
+    dictionary[string.lower().count(letter.lower())].append(letter)
+  else:
+    dictionary[string.lower().count(letter.lower())] = [letter]
+print(dictionary)
+arr = []
+for k in sorted(dictionary.keys()):
+  arr += dictionary[k]
+string = ''.join(arr)
+print(string)
